@@ -2,7 +2,7 @@
 const createStore = require('redux').createStore;
 
 // reducer 后期通过combineReducers合并成一个，放入createStore中
-// 保证是纯函数，不可更改state。  固定输入 -> 固定输出，没有副作用
+// 保证是纯函数，不可更改state。  1. 固定输入 -> 固定输出 2. 没有副作用(对外部有影响)
 const counterReducer = (state = 0, action)=>{
     switch(action.type) {
         // 经过一顿处理之后， 最终return出去的值,就是新的state
