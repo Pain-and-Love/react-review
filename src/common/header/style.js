@@ -62,6 +62,8 @@ export const SearchWrapper = styled.div`
 	}
 `;
 
+// style组件增加属性
+// 搜索框的入场/出场动画
 export const NavSearch = styled.input.attrs({
 	placeholder: '搜索'
 })`

@@ -15,10 +15,10 @@ class App extends Component {
       	<BrowserRouter>
       		<div>
             <Header />
-      			<Route path='/' exact component={Home}></Route>
-            <Route path='/login' exact component={Login}></Route>
-            <Route path='/write' exact component={Write}></Route>
-      			<Route path='/detail/:id' exact component={Detail}></Route>
+      			<Route path='/' exact component={Home} />
+            <Route path='/login' exact component={Login} />
+            <Route path='/write' exact component={Write} />
+      			<Route path='/detail/:id' exact component={Detail} />
       		</div>
       	</BrowserRouter>
       </Provider>

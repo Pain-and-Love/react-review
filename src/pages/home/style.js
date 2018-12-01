@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
+// 将home下的components都放在这里
+// 因为首页的布局很简单，所以这里统一管理
 export const HomeWrapper = styled.div`
 	overflow: hidden;
 	width: 960px;
 	margin: 0 auto;
 `;
 
+// 这里可以按组件的位置来命名，也比较直观
 export const HomeLeft = styled.div`
 	float: left;
 	margin-left: 15px;
@@ -29,6 +32,7 @@ export const TopicWrapper = styled.div`
 	border-bottom: 1px solid #dcdcdc;
 `;
 
+// img + text 的组合，通过float也可以去除img对text的影响
 export const TopicItem = styled.div`
 	float: left;
 	height: 32px;
@@ -84,6 +88,7 @@ export const RecommendWrapper = styled.div`
 	width: 280px;
 `;
 
+// 动态的背景图片写法，通过组件的props中的imgUrl属性
 export const RecommendItem = styled.div`
 	width: 280px;
 	height: 50px;

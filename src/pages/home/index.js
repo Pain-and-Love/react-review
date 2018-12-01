@@ -42,6 +42,7 @@ class Home extends PureComponent {
 	}
 
 	componentWillUnmount() {
+		// 全局事件记得清除。
 		window.removeEventListener('scroll', this.props.changeScrollTopShow);
 	}
 

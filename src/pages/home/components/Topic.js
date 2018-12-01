@@ -4,6 +4,7 @@ import { TopicWrapper, TopicItem } from '../style';
 
 class Topic extends PureComponent {
 	render() {
+		// 这里的list也是im对象
 		const { list } = this.props;
 		return (
 			<TopicWrapper>
