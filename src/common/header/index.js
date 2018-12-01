@@ -24,10 +24,12 @@ class Header extends Component {
 
 	getListArea() {
 		const { focused, list, page, totalPage, mouseIn, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
+		// 由于list在reducer中已经是im对象了。这里将其还原，便于进行遍历。
 		const newList = list.toJS();
 		const pageList = [];
 
 		if (newList.length) {
+			// 前端做分页
 			for (let i = (page - 1) * 10; i < page * 10; i++) {
 				pageList.push(
 					<SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
@@ -88,7 +90,7 @@ class Header extends Component {
 								className={focused ? 'focused': ''}
 								onFocus={() => handleInputFocus(list)}
 								onBlur={handleInputBlur}
-							></NavSearch>
+							/>
 						</CSSTransition>
 						<i className={focused ? 'focused iconfont zoom': 'iconfont zoom'}>
 							&#xe614;
@@ -110,8 +112,11 @@ class Header extends Component {
 	}
 }
 
+// 将state全部放在props(store)中进行统一管理。
 const mapStateToProps = (state) => {
 	return {
+		// focused: state.header.get('focused') 这种写法前面的state.header是普通对象，后面是im对象，不统一，容易搞混
+		// 所以这里通过redux-immutable转换为统一格式, state.get('header').get('focused');
 		focused: state.getIn(['header', 'focused']),
 		list: state.getIn(['header', 'list']),
 		page: state.getIn(['header', 'page']),
@@ -121,10 +126,12 @@ const mapStateToProps = (state) => {
 	}
 }
 
-const mapDispathToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
 	return {
 		handleInputFocus(list) {
+			// 其实按传统的做法，直接在原型方法上可以通过this.state.list来进行判断，这里更偏向于FF的风格
 			(list.size === 0) && dispatch(actionCreators.getList());
+			// 改变state.isFocused
 			dispatch(actionCreators.searchFocus());
 		},
 		handleInputBlur() {
@@ -137,14 +144,18 @@ const mapDispathToProps = (dispatch) => {
 			dispatch(actionCreators.mouseLeave());
 		},
 		handleChangePage(page, totalPage, spin) {
+			// FF风格
+			// js的ref配合纯css transition 来做手动进行做旋转动画
 			let originAngle = spin.style.transform.replace(/[^0-9]/ig, '');
 			if (originAngle) {
 				originAngle = parseInt(originAngle, 10);
 			}else {
+				// 初始状态没有rotate属性。将其设置为0
 				originAngle = 0;
 			}
 			spin.style.transform = 'rotate(' + (originAngle + 360) + 'deg)';
 
+			// 处理切换页码的业务逻辑，将最终得到的页码传给reducer进行state改变
 			if (page < totalPage) {
 				dispatch(actionCreators.changePage(page + 1));
 			}else {
@@ -157,4 +168,5 @@ const mapDispathToProps = (dispatch) => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(Header);
+// 这里也可以用@做装饰
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
