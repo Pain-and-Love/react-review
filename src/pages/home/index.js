@@ -47,6 +47,7 @@ class Home extends PureComponent {
 	}
 
 	bindEvents() {
+		// 这里相当于给全局都绑定了一个scroll事件，所以这个组件被销毁之后，一定记得解绑事件
 		window.addEventListener('scroll', this.props.changeScrollTopShow);
 	}
 

@@ -8,4 +8,5 @@ const LoadableComponent = Loadable({
   }
 });
 
+// 最终返回一个被LoadableComp包装的Detail组件
 export default () => <LoadableComponent/>

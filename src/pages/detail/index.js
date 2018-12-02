@@ -32,4 +32,6 @@ const mapDispatch = (dispatch) => ({
 	}
 });
 
+// 由于这里的Detail被loadable做一层包装。所以Detail组件没有直接放在Route里。
+// 所以需要用withRouter为其添加match属性。
 export default connect(mapState, mapDispatch)(withRouter(Detail));

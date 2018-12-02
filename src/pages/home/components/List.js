@@ -11,6 +11,8 @@ class List extends PureComponent {
 			<div>
 				{
 					list.map((item, index) => {
+						// 注意Link跳转和a标签跳转的区别。
+						// 路由动态传参数(id)
 						return (
 							<Link key={index} to={'/detail/' + item.get('id')}>
 								<ListItem >

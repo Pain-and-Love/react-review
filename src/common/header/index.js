@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// 函数式组件，或者说单凡使用了jsx语法，必须import React!!!
+// 当一个Comp只有render方法时，可以考虑将其转换为函数式组件
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -20,7 +22,8 @@ import {
 	Button
 } from './style';
 
-class Header extends Component {
+// PureComponent配合immutable进一步提升性能，省略不必要的render
+class Header extends PureComponent {
 
 	getListArea() {
 		const { focused, list, page, totalPage, mouseIn, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+// 只有Route中的component才有match等属性。 子组件需要通过withRouter包装。
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './common/header';
 import Home from './pages/home';

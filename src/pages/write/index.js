@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Write extends PureComponent {
+  // 通过loginStatus来判断用户是否已经登录
+	// return Redirect组件进行路由切换
 	render() {
 		const { loginStatus } = this.props;
 		if (loginStatus) {
